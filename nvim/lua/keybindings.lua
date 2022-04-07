@@ -33,3 +33,22 @@ map("n", "<C-Up>", ":resize -2<CR>", opt)
 
 -- 等比例
 map("n", "s=", "<C-w>=", opt)
+
+-- Terminal相关
+map("n", "<leader>t", ":sp | terminal<CR>", opt)
+
+-- visual 模式下缩进代码
+-- 上下移动选中文本
+-- 上下滚动浏览
+-- ctrl u / ctrl + d
+--
+-- 退出
+map("n", "q", ":q<CR>", opt)
+map("n", "qq", ":q!<CR>", opt)
+map("n", "Q", ":qa!<CR>", opt)
+
+-- insert 模式，跳转到行首行尾
+map("i", "<C-h>", "<ESC>I", opt)
+map("i", "<C-l>", "<ESC>A", opt)
+
+
