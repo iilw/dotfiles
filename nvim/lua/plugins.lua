@@ -13,10 +13,17 @@ packer.startup(
     --bufferline
     use ({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" }})
     use ({ 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' }})
+    -- telescope
     use ({ 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' }})
+    use ("LinArcX/telescope-env.nvim")
 
     -- dashboard-nvim
     use ("glepnir/dashboard-nvim")
+    use ("ahmedkhalf/project.nvim")
+    use ({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+
+    -- LSP
+    use ({ "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer" })
 end)
 
 
