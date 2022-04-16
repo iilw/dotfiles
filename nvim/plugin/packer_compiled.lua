@@ -74,6 +74,11 @@ _G.packer_plugins = {
     path = "/Users/ling/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/Users/ling/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
+    url = "https://github.com/glepnir/dashboard-nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/ling/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -93,6 +98,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/ling/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/Users/ling/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/Users/ling/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,

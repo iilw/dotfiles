@@ -63,6 +63,11 @@ map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
 map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
 
 
+-- Telescope
+-- 查找文件
+map("n", "<C-p>", ":Telescope find_files<CR>", opt)
+map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
+
 -- 插件快捷键
 local pluginKeys = {}
 
@@ -89,4 +94,23 @@ pluginKeys.nvimTreeList = {
   { key = "p", action = "paste" },
   { key = "s", action = "system_open" },
 }
+
+pluginKeys.telescopeList = {
+  i = {
+    -- 上下移动
+    ["<C-j>"] = "move_selection_next",
+    ["<C-k>"] = "move_selection_previous",
+    ["<Down>"] = "move_selection_next",
+    ["<Up>"] = "move_selection_previous",
+    -- 历史记录
+    ["<C-n>"] = "cycle_history_next",
+    ["<C-p>"] = "cycle_history_prev",
+    -- 关闭窗口
+    ["<C-c>"] = "clone",
+    -- 预览窗口上下移动
+    ["<C-u>"] = "preview_scrolling_up",
+    ["<C-d>"] = "preview_scrolling_down",
+  },
+}
+
 return pluginKeys 
