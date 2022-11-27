@@ -14,7 +14,6 @@ require('telescope').setup = {
   },
   extensions = {
     -- 扩展插件配置
-  }
+  },
 }
 
-pcall(require('telescope').load_extension('env'))
