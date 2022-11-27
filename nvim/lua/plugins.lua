@@ -26,6 +26,12 @@ packer.startup({
       'nvim-telescope/telescope.nvim',
       requires = { 'nvim-lua/plenary.nvim' }
     }
+
+    -- treesitter
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+    }
   end,
   config = {
     display = {
