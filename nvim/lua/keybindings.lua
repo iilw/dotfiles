@@ -1,14 +1,20 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+local keymap = vim.keymap
 local map = vim.api.nvim_set_keymap
 
 -- 复用 opt 参数
 local opt = {noremap = true, silent = true }
 
 -- 分屏快捷键
-map("n", "sv", ":vsp<CR>", opt) 
-map("n", "sh", ":sp<CR>", opt)
+keymap.set("n", "<leader>sh", "<C-w>h")
+keymap.set("n", "<leader>sj", "<C-w>j")
+keymap.set("n", "<leader>sk", "<C-w>k")
+keymap.set("n", "<leader>sl", "<C-w>l")
+
+--map("n", "sv", ":vsp<CR>", opt) 
+--map("n", "sh", ":sp<CR>", opt)
 
 -- 关闭当前
 map("n", "sc", "<C-w>c", opt)
