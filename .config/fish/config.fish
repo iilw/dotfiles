@@ -6,8 +6,10 @@ set -gx TERM xterm-256color
 
 
 # aliases
+
 alias g git
 
+command -qv nvim && alias vim nvim
 
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
