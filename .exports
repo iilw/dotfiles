@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+
+export EDITOR='nvim';
+
+export NVM_DIR=~/.nvm;
