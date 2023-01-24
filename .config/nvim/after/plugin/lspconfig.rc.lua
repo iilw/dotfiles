@@ -5,12 +5,12 @@ if (not status) then return end
 local protocol = require("vim.lsp.protocol")
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
-local enable_format_on_save = function (_, bufnr)
+local enable_format_on_save = function(_, bufnr)
   vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroup_format,
     buffer = bufnr,
-    callback = function ()
+    callback = function()
       vim.lsp.buf.format({ bufnr = bufnr })
     end
   })
@@ -59,13 +59,13 @@ protocol.CompletionItemKind = {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 nvim_lsp.flow.setup {
-	on_attach = on_attach,
+  on_attach = on_attach,
   capabilities = capabilities
 }
 
 nvim_lsp.sumneko_lua.setup {
   capabilities = capabilities,
-  on_attach = function (client, bufnr)
+  on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     enable_format_on_save(client, bufnr)
   end,
@@ -82,9 +82,13 @@ nvim_lsp.sumneko_lua.setup {
   }
 }
 
+nvim_lsp.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
 nvim_lsp.tsserver.setup {
-	on_attach = on_attach,
+  on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" }
 }

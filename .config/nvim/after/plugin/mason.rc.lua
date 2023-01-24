@@ -1,4 +1,3 @@
-
 require("mason").setup({
   ui = {
     icons = {
@@ -14,6 +13,11 @@ require("mason-lspconfig").setup({
   automatic_installation = true,
   ensure_installed = {
     "sumneko_lua",
-    "tsserver"
+    "tsserver",
+    "tailwindcss",
+    "cssls",
+    "html",
+    "jsonls",
+    "bashls"
   }
 })
