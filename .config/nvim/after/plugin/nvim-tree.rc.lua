@@ -6,6 +6,8 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+
 local HEIGHT_RATIO = 0.8
 local WIDTH_RATIO = 0.5
 

@@ -12,15 +12,12 @@ keymap.set("v", "K", ":m '<-2<CR>gb=gb")
 -- New Tab
 keymap.set('n', 'te', ':tabedit')
 -- Split window
-keymap.set("n", "<leader>sv", "<C-w>v")
-keymap.set("n", "<leader>sh", "<C-w>s")
+keymap.set("n", "sv", ":vsplit<Return><C-w>w")
+keymap.set("n", "ss", ":split<Return><C-w>w")
 -- Move window
 keymap.set('', 'sh', '<C-w>h')
 keymap.set('', 'sk', '<C-w>k')
 keymap.set('', 'sj', '<C-w>j')
 keymap.set('', 'sl', '<C-w>l')
-
--- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 

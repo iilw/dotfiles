@@ -3,10 +3,10 @@
 set -gx TERM xterm-256color
 
 # theme
-
+   
 
 # aliases
-alias g git
+        alias g git
 ## ide
 alias ide "bash ~/ide.sh"
 
