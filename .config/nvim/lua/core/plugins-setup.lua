@@ -41,29 +41,32 @@ return require('packer').startup(function(use)
     tag = 'nightly'
   }
 
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'neovim/nvim-lspconfig' -- lspconfig
+
   -- 语法高亮
   use 'nvim-treesitter/nvim-treesitter'
 
-  -- lsp
-  use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",  -- 这个相当于mason.nvim和lspconfig的桥梁
-    "neovim/nvim-lspconfig"
-  }
-
-  -- 自动补全
-  use "hrsh7th/nvim-cmp"
+  -- cmp plugins
   use "hrsh7th/cmp-nvim-lsp"
-  use "L3MON4D3/LuaSnip" -- snippets引擎
-  use "saadparwaiz1/cmp_luasnip"
-  use "rafamadriz/friendly-snippets"
-  use "hrsh7th/cmp-path" -- 文件路径
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-cmdline"
+  use "hrsh7th/nvim-cmp"
+
+  use "L3MON4D3/LuaSnip"
+  use 'onsails/lspkind-nvim' -- vscode-like pictograms
 
   use "numToStr/Comment.nvim" -- gcc & gc注释
   use "windwp/nvim-autopairs" -- 自动补全括号
 
-  use "akinsho/bufferline.nvim" -- buffer分割线
+  use "kyazdani42/nvim-web-devicons" -- File icons
+  use "akinsho/nvim-bufferline.lua"
   use "lewis6991/gitsigns.nvim" -- 左 git提示
+
+  use "akinsho/nvim-bufferline.lua"
+
 
   use {
     "nvim-telescope/telescope.nvim", tag = '0.1.1',

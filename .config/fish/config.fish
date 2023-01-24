@@ -6,8 +6,9 @@ set -gx TERM xterm-256color
 
 
 # aliases
-
 alias g git
+## ide
+alias ide "bash ~/ide.sh"
 
 command -qv nvim && alias vim nvim
 

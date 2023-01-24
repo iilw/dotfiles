@@ -3,6 +3,7 @@ if not npairs_ok then
   return
 end
 
+
 npairs.setup {
   check_ts = true,
   ts_config = {
@@ -20,6 +21,7 @@ npairs.setup {
     highlight_grey='Comment'
   },
 }
+
 
 -- 配置这个使得自动补全会把括号带上
 
