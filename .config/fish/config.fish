@@ -17,6 +17,9 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
 
+# Node
+set --universal nvm_default_version v18.13.0
+
 
 # NVM
 function __check_rvm --on-variable PWD --description 'Do nvm stuff'

@@ -22,6 +22,8 @@ vim.cmd([[
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  use 'nvim-lua/plenary.nvim' -- Common utilities
+
   -- 主题
   use 'folke/tokyonight.nvim'
 
@@ -60,7 +62,7 @@ return require('packer').startup(function(use)
 
   use "numToStr/Comment.nvim" -- gcc & gc注释
   use "windwp/nvim-autopairs" -- 自动补全括号
-
+  use "windwp/nvim-ts-autotag"
   use "kyazdani42/nvim-web-devicons" -- File icons
   use "akinsho/nvim-bufferline.lua"
   use "lewis6991/gitsigns.nvim" -- 左 git提示
@@ -69,10 +71,8 @@ return require('packer').startup(function(use)
 
   use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
-  use {
-    "nvim-telescope/telescope.nvim", tag = '0.1.1',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
+  use "nvim-telescope/telescope.nvim"
+  use "nvim-telescope/telescope-file-browser.nvim"
 
   if packer_bootstrap then
     require('packer').sync()

@@ -18,6 +18,7 @@ require("mason-lspconfig").setup({
     "cssls",
     "html",
     "jsonls",
-    "bashls"
+    "bashls",
+    "vimls"
   }
 })

@@ -89,12 +89,21 @@ nvim_lsp.tailwindcss.setup {
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  -- filetypes = {"javascript", "typescript", "typescriptreact", "typescript.tsx", "javascriptreact" },
   cmd = { "typescript-language-server", "--stdio" }
 }
 
 nvim_lsp.cssls.setup {
   on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.vimls.setup {
+  filetypes = { "vim", 'lua' },
+  capabilities = capabilities
+}
+
+nvim_lsp.html.setup {
   capabilities = capabilities
 }
 
