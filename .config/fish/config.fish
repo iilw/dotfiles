@@ -21,12 +21,3 @@ set -gx PATH ~/.local/bin $PATH
 set --universal nvm_default_version v18.13.0
 
 
-# NVM
-function __check_rvm --on-variable PWD --description 'Do nvm stuff'
-  status --is-command-substitution; and return
-
-  if test -f .nvmrc; and test -r .nvmrc;
-    nvm use
-  else
-  end
-end
