@@ -8,7 +8,7 @@ packer.startup(function(use)
 
 
   use 'nvim-lualine/lualine.nvim'
-  use 'nvim-tree/nvim-web-devicons'
+  use 'kyazdani42/nvim-web-devicons'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
@@ -33,12 +33,19 @@ packer.startup(function(use)
   --telescope
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-file-browser.nvim'
+  use 'nvim-telescope/telescope-node-modules.nvim'
+  use 'danielvolchek/tailiscope.nvim'
 
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
 
   use 'norcalli/nvim-colorizer.lua'
 
-  use 'numToStr/Comment.nvim' -- gcc & gc注释
+  use {
+    'numToStr/Comment.nvim',
+    requires = {
+      'JoosepAlviste/nvim-ts-context-commentstring'
+    }
+  } -- gcc & gc注释
   use 'lewis6991/gitsigns.nvim'
 end)

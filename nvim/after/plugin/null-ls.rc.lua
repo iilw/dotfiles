@@ -7,14 +7,17 @@ local formatting = null_ls.builtins.formatting
 
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
-    bufnr = bufnr
+    -- filter = function (client)
+    --   return client == "null-ls"
+    -- end,
+    bufnr = bufnr,
+    async = true
   })
 end
 
 null_ls.setup({
   sources = {
     formatting.prettier,
-    formatting.stylua
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -23,8 +26,8 @@ null_ls.setup({
         group = augroup,
         buffer = bufnr,
         callback = function()
-          -- lsp_formatting(bufnr)
-          vim.lsp.buf.format({ bufnr = bufnr })
+          lsp_formatting(bufnr)
+          -- vim.lsp.buf.format({ bufnr = bufnr })
         end,
       })
     end

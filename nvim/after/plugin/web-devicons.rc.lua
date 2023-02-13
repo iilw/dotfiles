@@ -3,5 +3,6 @@ if (not status) then return end
 
 icons.setup {
   override = {},
+  color_icons = true,
   default = true
 }

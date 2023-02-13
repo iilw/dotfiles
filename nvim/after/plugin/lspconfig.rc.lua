@@ -5,10 +5,15 @@ local protocol = require('vim.lsp.protocol')
 
 
 local on_attach = function(client, bufnr)
+
+  client.server_capabilities.documentFormattingProvider = false
+  client.server_capabilities.documentRangeFormattingProvider = false
+
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
   local opts = { noremap = true, silent = true }
-buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts) buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 end
 
 protocol.CompletionItemKind = {
@@ -65,6 +70,15 @@ nvim_lsp.tsserver.setup {
   cmd = { "typescript-language-server", "--stdio" },
 }
 
+nvim_lsp.html.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
