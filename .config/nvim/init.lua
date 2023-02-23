@@ -1,3 +1,4 @@
--- require("core/options")
--- require('core/keymaps')
--- require("core/plugins-setup")
+require('base')
+require('maps')
+require('highlights')
+require('plugins')

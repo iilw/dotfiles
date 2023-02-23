@@ -1,14 +1,26 @@
-require'nvim-treesitter.configs'.setup {
-  -- 添加不同语言
-  ensure_installed = { "vim", "help", "bash", "c", "cpp", "javascript", "json", "lua", "python", "typescript", "tsx", "css", "rust", "markdown", "markdown_inline" }, -- one of "all" or a list of languages
+local status, ts = pcall(require, 'nvim-treesitter.configs')
+if (not status) then return end
 
-  highlight = { enable = true },
-  indent = { enable = true },
-
-  -- 不同括号颜色区分
-  rainbow = {
+ts.setup {
+  highlight = {
     enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
+    disable = {},
+  },
+  indent = {
+    enable = true,
+    disable = {}
+  },
+  ensure_installed = {
+    'markdown_inline',
+    'markdown',
+    'tsx',
+    'lua',
+    'json',
+    'css',
+    'fish',
+    'html'
+  },
+  autotag = {
+    enable = true
   }
 }
