@@ -1,5 +1,8 @@
 local keymap = vim.keymap
 
+-- Escape
+keymap.set('i', 'jj', '<Esc>', { noremap = true });
+
 -- Increment/decrement
 keymap.set('n', '+', '<C-a>')
 keymap.set('n', '-', '<C-x>')

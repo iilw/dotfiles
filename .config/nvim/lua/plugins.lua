@@ -39,6 +39,8 @@ packer.startup(function(use)
 
   use 'norcalli/nvim-colorizer.lua'
 
+  use 'akinsho/bufferline.nvim'
+
   use {
     'numToStr/Comment.nvim',
     requires = {

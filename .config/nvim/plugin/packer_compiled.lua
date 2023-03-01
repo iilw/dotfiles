@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -194,20 +199,10 @@ _G.packer_plugins = {
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["tailiscope.nvim"] = {
-    loaded = true,
-    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/tailiscope.nvim",
-    url = "https://github.com/danielvolchek/tailiscope.nvim"
-  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
     url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
-  },
-  ["telescope-node-modules.nvim"] = {
-    loaded = true,
-    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/telescope-node-modules.nvim",
-    url = "https://github.com/nvim-telescope/telescope-node-modules.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
