@@ -34,10 +34,11 @@ null_ls.setup({
   end
 })
 
+-- 在当前的buffer关闭自动格式化
 vim.api.nvim_create_user_command(
   'DisableLspFormatting',
   function()
-    vim.api.nvim_create_autocmds({ group = augroup, buffer = 0 })
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
   end,
   { nargs = 0 }
 )
