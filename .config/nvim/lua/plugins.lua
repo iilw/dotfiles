@@ -23,7 +23,9 @@ packer.startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-  use 'L3MON4D3/LuaSnip'
+  use 'L3MON4D3/LuaSnip' -- 补全引擎
+  use "rafamadriz/friendly-snippets"
+  use 'saadparwaiz1/cmp_luasnip'
   use 'onsails/lspkind-nvim'
 
   use 'glepnir/lspsaga.nvim' -- LSP UIs
