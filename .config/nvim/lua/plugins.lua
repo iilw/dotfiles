@@ -7,7 +7,10 @@ packer.startup(function(use)
   use { 'projekt0n/github-nvim-theme', tag = 'v0.0.7' }
 
 
+  -- 目录树
+  use 'nvim-tree/nvim-tree.lua'
   use 'nvim-lualine/lualine.nvim'
+  -- icons
   use 'kyazdani42/nvim-web-devicons'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -24,10 +27,9 @@ packer.startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'L3MON4D3/LuaSnip' -- 补全引擎
-  use "rafamadriz/friendly-snippets"
   use 'saadparwaiz1/cmp_luasnip'
-  use 'onsails/lspkind-nvim'
 
+  use 'onsails/lspkind-nvim'
   use 'glepnir/lspsaga.nvim' -- LSP UIs
 
   use 'jose-elias-alvarez/null-ls.nvim'
@@ -43,11 +45,13 @@ packer.startup(function(use)
 
   use 'akinsho/bufferline.nvim'
 
+  -- gcc & gc注释
   use {
     'numToStr/Comment.nvim',
     requires = {
       'JoosepAlviste/nvim-ts-context-commentstring'
     }
-  } -- gcc & gc注释
+  }
+
   use 'lewis6991/gitsigns.nvim'
 end)
