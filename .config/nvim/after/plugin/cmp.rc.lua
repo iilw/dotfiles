@@ -16,6 +16,10 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end
   },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -64,13 +68,13 @@ cmp.setup({
       ellipsis_char = '...',
       before = function (entry, vim_item)
 
-        vim_item.menu = ({
-          buffer = "[Buffer]",
-          nvim_lsp = "[LSP]",
-          luasnip = "[Luasnip]",
-          nvim_lua = "[Lua]",
-          latex_symbols = "[LaTex]",
-        })[entry.source.name]
+        -- vim_item.menu = ({
+        --   buffer = "[Buffer]",
+        --   nvim_lsp = "[LSP]",
+        --   luasnip = "[Luasnip]",
+        --   nvim_lua = "[Lua]",
+        --   latex_symbols = "[LaTex]",
+        -- })[entry.source.name]
 
         return vim_item
       end
