@@ -27,7 +27,7 @@ telescope.setup {
       mappings = {
         ['i'] = {
           ['<C-w>'] = function ()
-            vim.cmd('normal vbd')
+            -- vim.cmd('normal vbd')
           end
         },
         ['n'] = {

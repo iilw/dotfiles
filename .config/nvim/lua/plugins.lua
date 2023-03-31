@@ -4,7 +4,11 @@ if (not status) then return end
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/plenary.nvim'
-  use { 'projekt0n/github-nvim-theme', tag = 'v0.0.7' }
+  -- use { 'projekt0n/github-nvim-theme', tag = 'v0.0.7' }
+  use {
+    'svrana/neosolarized.nvim',
+    requires = { 'tjdevries/colorbuddy.nvim' }
+  }
 
 
   -- 目录树
