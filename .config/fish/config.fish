@@ -2,6 +2,9 @@ source ~/.config/fish/alias.fish
 
 set -gx TERM xterm-256color
 
+# PATH
+set --universal fish_user_paths ~/bin $fish_user_paths
+
 # Fish syntx highlighting
 set -g fish_color_autosuggestion '555'  'brblack'
 set -g fish_color_cancel -r
@@ -27,10 +30,6 @@ set -g fish_color_valid_path --underline
 
 # nvm default version
 set --universal nvm_default_version v14
-
-
-# Install Starship
-# starship init fish | source
 
 # Autojump
 source /opt/homebrew/share/autojump/autojump.fish
