@@ -1,5 +1,7 @@
 
 
 # Fish config
-.config/fish/config-local.fish
+.config/fish/fish_history
 .config/fish/fish_variables
+
+.DS_Store

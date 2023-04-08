@@ -1,0 +1,9 @@
+{
+  "useMemo": {
+    "prefix": "ume",
+    "body": [
+      "const ${1:memoizedValue} = useMemo(() => ${2:computeExpensiveValue}(${3:a}, ${4:b}), [${5:a}, ${6:b}])$0"
+    ],
+    "description": "React useMemo() hook"
+  }
+}

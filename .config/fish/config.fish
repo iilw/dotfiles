@@ -25,6 +25,12 @@ set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
 set -g fish_color_user brgreen
 set -g fish_color_valid_path --underline
 
+# nvm default version
+set --universal nvm_default_version v14
+
 
 # Install Starship
-starship init fish | source
+# starship init fish | source
+
+# Autojump
+source /opt/homebrew/share/autojump/autojump.fish
