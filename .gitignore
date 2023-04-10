@@ -5,3 +5,6 @@
 .config/fish/fish_variables
 
 .DS_Store
+
+# tmux
+.config/tmux/plugins
