@@ -10,9 +10,11 @@ packer.startup(function(use)
     requires = { 'tjdevries/colorbuddy.nvim' }
   }
 
+  -- Leap
+  use 'ggandor/leap.nvim'
 
   -- 目录树
-  use 'nvim-tree/nvim-tree.lua'
+  -- use 'nvim-tree/nvim-tree.lua'
   use 'nvim-lualine/lualine.nvim'
   -- icons
   use 'kyazdani42/nvim-web-devicons'
