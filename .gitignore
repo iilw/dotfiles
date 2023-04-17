@@ -8,3 +8,6 @@
 
 # tmux
 .config/tmux/plugins
+
+# git
+git/gitconfig.local.symlink
