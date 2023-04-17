@@ -19,7 +19,11 @@ ts.setup {
     'css',
     'fish',
     'html',
-    'vim'
+    'vim',
+    "javascript",
+    "typescript",
+    "bash",
+    "regex"
   },
   autotag = {
     enable = true
