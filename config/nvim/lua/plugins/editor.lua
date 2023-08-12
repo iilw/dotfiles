@@ -97,4 +97,40 @@ return {
       require("nvim-ts-autotag").setup()
     end,
   },
+
+  -- chatp gpt
+  {
+    "jackMort/ChatGPT.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
+
+  -- lsp_saga
+  {
+    "nvimdev/lspsaga.nvim",
+    keys = {
+      { "[e", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Lspsaga diagnostic_jump_next" },
+      { "]e", "<cmd>Lspsaga diagnostic_jump_prev<cr>", desc = "Lspsaga diagnostic_jump_next" },
+      { "gh", "<cmd>Lspsaga finder<cr>", desc = "Lspsaga finder" },
+      { "K", "<cmd>Lspsaga hover_doc<cr>", desc = "Lspsaga Hover" },
+      { "gr", "<cmd>Lspsaga rename<cr>", desc = "Lspsaga Rename" },
+      { "gd", "<cmd>Lspsaga goto_definition<cr>", desc = "Lspsaga go to the definition" },
+      { "gp", "<cmd>Lspsaga peek_definition<cr>", desc = "Lspsaga open definition" },
+    },
+    config = function()
+      require("lspsaga").setup({})
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter", -- optional
+      "nvim-tree/nvim-web-devicons", -- optional
+    },
+  },
 }
