@@ -101,11 +101,14 @@ return {
   -- chatp gpt
   {
     "jackMort/ChatGPT.nvim",
-    enabled = false,
     event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup()
-    end,
+    opts = {
+      api_key_cmd = "echo -n sk-aWQJc7s7GvYFlIl1XzTb932hHstHyQ0z9OIXJEUPwADg5Ssb",
+      api_host_cmd = "echo -n api.chatanywhere.com.cn",
+    },
+    -- config = function()
+    --   require("chatgpt").setup()
+    -- end,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
