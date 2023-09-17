@@ -37,4 +37,4 @@ keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", {})
 keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", {})
 
 -- toggle spell
-keymap.set("n", "hh", ":set spell!<Return>", {})
+keymap.set("n", "sp", ":set spell!<Return>")

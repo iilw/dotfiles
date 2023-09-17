@@ -1,4 +1,14 @@
 return {
+  -- im-select
+  {
+    "keaising/im-select.nvim",
+    config = function()
+      require("im_select").setup({
+        default_command = "im-select",
+      })
+    end,
+  },
+
   -- neo tree
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
 
