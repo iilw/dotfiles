@@ -60,10 +60,8 @@ packer.startup(function(use)
 
   use {
     'keaising/im-select.nvim',
-    run = function ()
-      require('im_select').setup({
-        default_command = 'im-select'
-      })
+    config = function ()
+      require('im_select').setup({})
     end
   }
 end)

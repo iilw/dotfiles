@@ -109,6 +109,12 @@ _G.packer_plugins = {
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["im-select.nvim"] = {
+    config = { "\27LJ\2\ni\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\20default_command\14im-select\20async_switch_im\1\nsetup\14im_select\frequire\0" },
+    loaded = true,
+    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/im-select.nvim",
+    url = "https://github.com/keaising/im-select.nvim"
+  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
@@ -138,6 +144,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
   },
   ["neosolarized.nvim"] = {
     loaded = true,
@@ -173,6 +184,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-notify"] = {
+    loaded = true,
+    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/nvim-notify",
+    url = "https://github.com/rcarriga/nvim-notify"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -214,6 +230,21 @@ _G.packer_plugins = {
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["todo-comments.nvim"] = {
+    loaded = true,
+    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/Users/devling/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
+  },
   ["zen-mode.nvim"] = {
     loaded = true,
     path = "/Users/devling/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
@@ -222,6 +253,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: im-select.nvim
+time([[Config for im-select.nvim]], true)
+try_loadstring("\27LJ\2\ni\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\20default_command\14im-select\20async_switch_im\1\nsetup\14im_select\frequire\0", "config", "im-select.nvim")
+time([[Config for im-select.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
