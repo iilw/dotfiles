@@ -2,13 +2,13 @@ fishd.*
 
 
 # Fish config
-.config/fish/fish_history
-.config/fish/fish_variables
+config/fish/fish_history
+config/fish/fish_variables
 
 .DS_Store
 
 # tmux
-.config/tmux/plugins
+config/tmux/plugins
 
 # git
 git/gitconfig.local.symlink
