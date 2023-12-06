@@ -1,0 +1,15 @@
+{
+  "exportTypescriptReactArrowFunctionExportComponent": {
+    "prefix": "etsrafce",
+    "body": [
+      "interface ${1:first}Props = {}",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}} = (props: ${1:first}Props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface"
+  }
+}
