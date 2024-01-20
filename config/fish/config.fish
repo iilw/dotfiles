@@ -17,6 +17,7 @@ alias vim nvim
 alias proxy "export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
 alias unproxy "export http_proxy= https_proxy= all_proxy="
 
+set -gx ANDROID_HOME $HOME/Library/Android/sdk
 
 set -gx EDITOR nvim
 set -gx PATH bin $PATH
@@ -28,6 +29,9 @@ set -gx PATH node_modules/.bin $PATH
 set -gx PATH /opt/homebrew/bin $PATH
 # flutter
 set -gx PATH ~/flutter/flutter/bin $PATH
+# Android
+set -gx PATH $ANDROID_HOME/emulator $PATH
+set -gx PATH $ANDROID_HOME/platform-tools $PATH
 
 # Fzf
 set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
