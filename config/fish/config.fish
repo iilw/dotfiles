@@ -17,6 +17,9 @@ alias vim nvim
 alias proxy "export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
 alias unproxy "export http_proxy= https_proxy= all_proxy="
 
+# pyenv
+alias brew="env PATH=(string replace (pyenv root)/shims '' \"\$PATH\") brew"
+
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 
 set -gx EDITOR nvim
