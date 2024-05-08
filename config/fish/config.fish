@@ -2,6 +2,8 @@ set fish_greeting ""
 
 set -gx TERM xterm-256color
 
+set --universal nvm_default_version v18
+
 # aliases
 alias ls "ls -p -G"
 alias la "ls -A"
