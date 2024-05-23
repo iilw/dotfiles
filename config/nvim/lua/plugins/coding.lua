@@ -1,4 +1,13 @@
 return {
+
+  -- Copilot
+  {
+    "zbirenbaum/copilot.lua",
+    opts = {
+      copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v18.18.2/bin/node",
+    },
+  },
+
   -- Lspsaga
   {
     "nvimdev/lspsaga.nvim",
@@ -78,5 +87,20 @@ return {
     config = function(_, opts)
       require("im_select").setup(opts)
     end,
+  },
+
+  -- CopilotChat
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    opts = {
+      -- debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
   },
 }
