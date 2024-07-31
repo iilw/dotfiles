@@ -11,5 +11,20 @@
       "}"
     ],
     "description": "Creates a React Arrow Function Component with ES7 module system and TypeScript interface"
+  },
+  "exportTypescriptReactArrowFunctionExportDefaultComponent": {
+    "prefix": "dtsrafce",
+    "body": [
+      "export interface ${1:${TM_FILENAME_BASE}}Props {}",
+      "",
+      "const ${1:${first}} = (props: ${1:first}Props) => {",
+      "  return (",
+      "    <div>${1:first}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:first}"
+    ],
+    "description": "Creates a React Arrow Function Default Component with ES7 module system and TypeScript interface"
   }
 }

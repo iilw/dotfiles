@@ -28,6 +28,11 @@ return {
         desc = "Lspsaga rename",
       },
       {
+        "gf",
+        "<cmd>Lspsaga finder<cr>",
+        desc = "Lspsaga finder",
+      },
+      {
         "]e",
         "<cmd>Lspsaga diagnostic_jump_next<cr>",
         desc = "Lspsaga diagnostic next",
