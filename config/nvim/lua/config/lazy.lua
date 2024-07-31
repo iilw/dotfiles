@@ -23,6 +23,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.tailwind" },
     -- { import = "lazyvim.plugins.extras.coding.codeium" },
     { import = "lazyvim.plugins.extras.coding.copilot" },
+    { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+    { import = "lazyvim.plugins.extras.coding.luasnip" },
     { import = "lazyvim.plugins.extras.dap.core" },
     -- { import = "lazyvim.plugins.extras.vscode" },
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
@@ -31,6 +33,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.editor.mini-files" },
     -- { import = "lazyvim.plugins.extras.util.project" },
     { import = "lazyvim.plugins.extras.editor.navic" },
+    { import = "lazyvim.plugins.extras.editor.inc-rename" },
     { import = "plugins" },
   },
   defaults = {
