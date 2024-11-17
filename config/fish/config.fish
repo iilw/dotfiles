@@ -2,7 +2,8 @@ set fish_greeting ""
 
 set -gx TERM xterm-256color
 
-set --universal nvm_default_version v18
+# Default version for nodejs
+set --universal nvm_default_version v20
 
 # aliases
 alias ls "ls -p -G"
@@ -13,6 +14,7 @@ alias g git
 alias cls clear
 alias vi vim
 alias vim nvim
+alias t tmux
 # alias for dotfiles
 # alias dotfiles "/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 # proxy
@@ -41,6 +43,12 @@ set -gx PATH $ANDROID_HOME/platform-tools $PATH
 # Fzf
 set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
 set -g FZF_LEGACY_KEYBINDINGS 0
+
+# cocopoilot
+set GH_OVERRIDE_SHELL_FILE "$HOME/.copilot.override.sh"
+if test -f "$GH_OVERRIDE_SHELL_FILE"
+    source "$GH_OVERRIDE_SHELL_FILE"
+end
 
 # NVM
 function __check_rvm --on-variable PWD --description 'Do nvm stuff'

@@ -26,5 +26,16 @@
       "export default ${1:first}"
     ],
     "description": "Creates a React Arrow Function Default Component with ES7 module system and TypeScript interface"
+  },
+  "exportDefaultFunctionPage": {
+    "prefix": "edfp",
+    "body": [
+      "export default function Page() {",
+      "   return (",
+      "     ${1:}",
+      "   )",
+      "}"
+    ],
+    "description": "Create a default export function page"
   }
 }
