@@ -1,16 +1,16 @@
 return {
   -- luasnip
-  {
-    "rafamadriz/friendly-snippets",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load({
-        paths = {
-          "./snippets",
-        },
-      })
-    end,
-  },
+  -- {
+  --   "rafamadriz/friendly-snippets",
+  --   config = function()
+  --     require("luasnip.loaders.from_vscode").lazy_load()
+  --     require("luasnip.loaders.from_vscode").lazy_load({
+  --       paths = {
+  --         "./snippets",
+  --       },
+  --     })
+  --   end,
+  -- },
   -- Copilot
   {
     "zbirenbaum/copilot.lua",
@@ -19,51 +19,61 @@ return {
     },
   },
   -- Lspsaga
-  {
-    "nvimdev/lspsaga.nvim",
-    event = "LspAttach",
-    keys = {
-      -- {
-      --   "gd",
-      --   "<cmd>Lspsaga goto_definition<cr>",
-      --   desc = "Lspsaga Goto definition",
-      -- },
-      {
-        "gf",
-        "<cmd>Lspsaga finder<cr>",
-        desc = "Lspsaga finder",
-      },
-      {
-        "]e",
-        "<cmd>Lspsaga diagnostic_jump_next<cr>",
-        desc = "Lspsaga diagnostic next",
-      },
-      {
-        "[e",
-        "<cmd>Lspsaga diagnostic_jump_prev<cr>",
-        desc = "Lspsaga diagnostic prev",
-      },
-    },
-    opts = {
-      ui = {
-        border = "rounded",
-      },
-      symbol_in_winbar = {
-        enable = false,
-      },
-      lightbulb = {
-        enable = false,
-      },
-      outline = {
-        layout = "float",
-      },
-      diagnostic = {
-        keys = {
-          quit = { "q", "<ESC>" },
-        },
-      },
-    },
-  },
+  -- {
+  --   "nvimdev/lspsaga.nvim",
+  --   event = "LspAttach",
+  --   keys = {
+  --     -- {
+  --     --   "gd",
+  --     --   "<cmd>Lspsaga goto_definition<cr>",
+  --     --   desc = "Lspsaga Goto definition",
+  --     -- },
+  --     {
+  --       "gf",
+  --       "<cmd>Lspsaga finder<cr>",
+  --       desc = "Lspsaga finder",
+  --     },
+  --     {
+  --       "]e",
+  --       "<cmd>Lspsaga diagnostic_jump_next<cr>",
+  --       desc = "Lspsaga diagnostic next",
+  --     },
+  --     {
+  --       "[e",
+  --       "<cmd>Lspsaga diagnostic_jump_prev<cr>",
+  --       desc = "Lspsaga diagnostic prev",
+  --     },
+  --     {
+  --       "gr",
+  --       "<cmd>Lspsaga rename<cr>",
+  --       desc = "Lspsaga rename",
+  --     },
+  --     {
+  --       "K",
+  --       "<cmd>Lspsaga hover_doc<cr>",
+  --       desc = "Lspsaga Hover",
+  --     },
+  --   },
+  --   opts = {
+  --     ui = {
+  --       border = "rounded",
+  --     },
+  --     symbol_in_winbar = {
+  --       enable = false,
+  --     },
+  --     lightbulb = {
+  --       enable = false,
+  --     },
+  --     outline = {
+  --       layout = "float",
+  --     },
+  --     diagnostic = {
+  --       keys = {
+  --         quit = { "q", "<ESC>" },
+  --       },
+  --     },
+  --   },
+  -- },
 
   -- im-select
   {

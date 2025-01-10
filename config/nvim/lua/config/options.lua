@@ -2,7 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.g.mapleader = " "
+-- vim.g.mapleader = " "
 
 -- vim.scriptencoding = "utf-8"
 -- vim.opt.encoding = "utf-8"
@@ -35,3 +35,6 @@ vim.g.mapleader = " "
 -- vim.opt.splitbelow = true -- Put new windows below current
 -- vim.opt.splitright = true -- Put new windows right of current
 -- vim.opt.splitkeep = "cursor"
+
+vim.g.lazyvim_picker = "telescope"
+vim.g.snacks_animate = false

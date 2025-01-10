@@ -1,8 +1,4 @@
-if true then
-  return {}
-end
 return {
-  -- tools
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
@@ -23,9 +19,20 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
+      -- https://www.lazyvim.org/plugins/lsp#%EF%B8%8F-customizing-lsp-keymaps
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "K", "<cmd>Lspsaga hover_doc<cr>", desc = "Lspsaga Hover" }
-      keys[#keys + 1] = { "gr", "<cmd>Lspsaga rename<cr>", desc = "Lspsaga rename" }
+
+      -- inc-rename.nvim
+      keys[#keys + 1] = {
+        "gr",
+        function()
+          local inc_rename = require("inc_rename")
+          return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
+        end,
+        expr = true,
+        desc = "Rename (inc-rename.nvim)",
+        has = "rename",
+      }
     end,
   },
 }
