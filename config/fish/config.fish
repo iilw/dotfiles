@@ -5,21 +5,12 @@ set -gx TERM xterm-256color
 # Default version for nodejs
 set --universal nvm_default_version v20
 
-# aliases
-alias ls "ls -p -G"
-alias la "ls -A"
-alias ll "ls -l"
-alias lla "ll -A"
-alias g git
-alias cls clear
-alias vi vim
-alias vim nvim
-alias t tmux
-# alias for dotfiles
-# alias dotfiles "/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-# proxy
-alias proxy "export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
-alias unproxy "export http_proxy= https_proxy= all_proxy="
+# Path
+fish_add_path /bin
+fish_add_path ~/bin
+fish_add_path ~/.local/bin
+fish_add_path /opt/homebrew/bin
+# fish_add_path ~/flutter/flutter/bin
 
 # pyenv
 alias brew="env PATH=(string replace (pyenv root)/shims '' \"\$PATH\") brew"
@@ -27,22 +18,6 @@ alias brew="env PATH=(string replace (pyenv root)/shims '' \"\$PATH\") brew"
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 
 set -gx EDITOR nvim
-set -gx PATH bin $PATH
-set -gx PATH ~/bin $PATH
-set -gx PATH ~/.local/bin $PATH
-# Nodejs
-set -gx PATH node_modules/.bin $PATH
-# Brew
-set -gx PATH /opt/homebrew/bin $PATH
-# flutter
-set -gx PATH ~/flutter/flutter/bin $PATH
-# Android
-set -gx PATH $ANDROID_HOME/emulator $PATH
-set -gx PATH $ANDROID_HOME/platform-tools $PATH
-
-# Fzf
-# set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
-# set -g FZF_LEGACY_KEYBINDINGS 0
 
 # cocopoilot
 set GH_OVERRIDE_SHELL_FILE "$HOME/.copilot.override.sh"
@@ -61,15 +36,33 @@ end
 
 
 
-test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
+# Tmux 
+abbr t tmux
+abbr ta 'tmux attach -t'
+abbr tc 'tmux attach'
+abbr tl 'tmux ls'
+abbr ts 'tmux new -s'
+abbr tk 'tmux kill-session -t'
 
+# Files
+abbr mv "mv -iv"
+abbr cp "cp -riv"
+abbr mkdir "mkdir -vp"
+alias ls 'eza --color=always --icons --group-directories-first'
+alias la 'eza --color=always --icons --group-directories-first --all'
+alias ll 'eza --color=always --icons --group-directories-first --all --long'
+abbr l ll
 
-switch (uname)
-    case Darwin
-        source (dirname (status --current-filename))/config-osx.fish
-end
+# Editor
+abbr vim nvim
+abbr vi nvim
+abbr v nvim
 
-set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
-if test -f $LOCAL_CONFIG
-    source $LOCAL_CONFIG
-end
+# Dev
+abbr gg lazygit
+
+# Other
+abbr cls clear
+# proxy
+alias proxy "export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
+alias unproxy "export http_proxy= https_proxy= all_proxy="

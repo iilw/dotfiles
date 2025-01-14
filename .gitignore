@@ -14,6 +14,6 @@ config/tmux/plugins
 git/gitconfig.local.symlink
 
 # Fish local config
-config/fish/functions
-config/fish/conf.d
-config/fish/completions
+# config/fish/functions
+# config/fish/conf.d
+# config/fish/completions
