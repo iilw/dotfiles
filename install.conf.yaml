@@ -8,4 +8,5 @@
     ~/.config/tmux: config/tmux
     ~/.config/fish: config/fish
     ~/.config/nvim: config/nvim
+    ~/.config/kitty: config/kitty
     ~/bin: bin

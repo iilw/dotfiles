@@ -41,8 +41,8 @@ set -gx PATH $ANDROID_HOME/emulator $PATH
 set -gx PATH $ANDROID_HOME/platform-tools $PATH
 
 # Fzf
-set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
-set -g FZF_LEGACY_KEYBINDINGS 0
+# set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
+# set -g FZF_LEGACY_KEYBINDINGS 0
 
 # cocopoilot
 set GH_OVERRIDE_SHELL_FILE "$HOME/.copilot.override.sh"

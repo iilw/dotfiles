@@ -1,4 +1,7 @@
-ilancosman/tide@v6
-jorgebucaran/nvm.fish
-jethrokuan/z
 jorgebucaran/fisher
+jorgebucaran/nvm.fish
+jorgebucaran/autopair.fish
+franciscolourenco/done
+ilancosman/tide@v6
+jethrokuan/z
+patrickf1/fzf.fish
