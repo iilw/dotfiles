@@ -1,9 +1,8 @@
-set fish_greeting ""
-
-set -gx TERM xterm-256color
+# Disable fish_greeting
+set fish_greeting "Hello world! Let's code."
 
 # Default version for nodejs
-set --universal nvm_default_version v20
+# set --universal nvm_default_version v20
 
 # Path
 fish_add_path /bin
@@ -24,16 +23,6 @@ set GH_OVERRIDE_SHELL_FILE "$HOME/.copilot.override.sh"
 if test -f "$GH_OVERRIDE_SHELL_FILE"
     source "$GH_OVERRIDE_SHELL_FILE"
 end
-
-# NVM
-function __check_rvm --on-variable PWD --description 'Do nvm stuff'
-    status --is-command-substitution; and return
-    if test -f .nvmrc; and test -r .nvmrc
-        nvm use
-    else
-    end
-end
-
 
 
 # Tmux 
@@ -59,6 +48,7 @@ abbr vi nvim
 abbr v nvim
 
 # Dev
+alias lazygit "TERM=xterm-256color command lazygit"
 abbr gg lazygit
 
 # Other
