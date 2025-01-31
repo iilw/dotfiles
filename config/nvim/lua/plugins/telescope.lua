@@ -1,59 +1,50 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-file-browser.nvim'},
     keys = {
-      {
-        ";f",
-        "<cmd>Telescope find_files<cr>",
-        desc = "Find files",
-      },
-      {
-        ";;",
-        "<cmd>Telescope resume<cr>",
-        desc = "Resume",
-      },
-      {
-        ";r",
-        "<cmd>Telescope live_grep<cr>",
-        desc = "Telescope live_grep",
-      },
+      {";f", "<cmd>Telescope find_files<cr>"},
+      {";r", "<cmd>Telescope live_grep<cr>"},
+      {";;", "<cmd>Telescope resume<cr>"},
+      {"sf", function()
+        local t = require("telescope")
+        t.extensions.file_browser.file_browser({
+          path = "%:p:h",
+          cwd = vim.fn.expand("%:p:h"),
+          grouped = true,
+          previewer = false,
+          initial_mode = "normal",
+          layout_config = { height = 40 }
+        })
+      end}
     },
-    opts = {
-      defaults = {},
-      pickers = {
-        find_files = {},
-      },
-      extensions = {
-        file_browser = {
+    opts = function()
+      local actions = require("telescope.actions")
+      return {
+        defaults = {
           theme = "dropdown",
+          border = true,
+          winblend = 20,
+          preview = {
+            winblend = 20
+          },
+          mappings = {
+            n = {
+              ["q"] = actions.close
+            }
+          }
         },
-      },
-    },
-    config = function(_, opts)
-      local telescope = require("telescope")
-      telescope.setup(opts)
-      telescope.load_extension("file_browser")
+        extensions = {
+          file_browser = {
+            theme = "dropdown"
+          }
+        }
+      }
     end,
-  },
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    keys = {
-      {
-        "sf",
-        function()
-          local t = require("telescope")
-          t.extensions.file_browser.file_browser({
-            path = "%:p:h",
-            grouped = true, -- 文件夹优先显示
-            cwd = vim.fn.expand("%:p:h"),
-            previewer = false,
-            initial_mode = "normal",
-            layout_config = { height = 40 },
-          })
-        end,
-        desc = "Telescope file_browser",
-      },
-    },
-  },
+    config = function(_,opts)
+      local t = require("telescope")
+      t.setup(opts)
+      t.load_extension("file_browser")
+    end
+  }
 }
