@@ -22,9 +22,7 @@ require("lazy").setup({
     { import = "plugins" },
 
     -- enable all languages
-    -- { import = "plugins.languages" },
-    { import = "plugins.languages.typescript" },
-    { import = "plugins.languages.json" },
+    { import = "plugins.languages" },
 
   },
   -- Configure any other settings here. See the documentation for more details.
