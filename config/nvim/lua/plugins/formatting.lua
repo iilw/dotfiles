@@ -13,6 +13,7 @@ return {
 			},
 			format_on_save = {
 				timout_ms = 500,
+				lsp_fallback = true,
 			},
 		},
 	},

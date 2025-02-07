@@ -10,7 +10,9 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {
-			formatters_by_ft = {},
+			formatters_by_ft = {
+				typescriptreact = { "prettier" },
+			},
 		},
 	},
 	{
