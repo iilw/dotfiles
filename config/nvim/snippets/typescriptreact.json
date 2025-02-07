@@ -1,0 +1,17 @@
+{
+  "eip": {
+    "prefix": "eip",
+    "body": [
+      "export interface ${1:Props} {",
+      "}"
+    ]
+  },
+  "edfp": {
+    "prefix": "edfp",
+    "body": [
+      "export default function Page() {",
+      "  return (${1:<div></div>})",
+      "}"
+    ]
+  }
+}
