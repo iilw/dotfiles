@@ -12,4 +12,14 @@ return {
 			require("leap").add_default_mappings(true)
 		end,
 	},
+	{
+		"folke/trouble.nvim",
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+			},
+		},
+		opts = {},
+	},
 }
