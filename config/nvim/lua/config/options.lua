@@ -7,6 +7,11 @@ opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
 opt.termguicolors = true
+opt.confirm = true
+opt.showmode = false
+
+opt.pumblend = 15
+opt.cmdheight = 1
 
 opt.mouse = ""
 opt.clipboard = "unnamedplus"
@@ -20,4 +25,4 @@ opt.softtabstop = 2
 opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
-
+opt.breakindent = true
