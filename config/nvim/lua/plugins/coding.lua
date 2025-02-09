@@ -5,11 +5,6 @@ return {
 		opts = {},
 	},
 	{
-		"folke/ts-comments.nvim",
-		event = "VeryLazy",
-		opts = {},
-	},
-	{
 		"saghen/blink.cmp",
 		dependencies = { "rafamadriz/friendly-snippets" },
 		version = "*",
@@ -24,8 +19,8 @@ return {
 			},
 			completion = {
 				menu = {
+					winblend = vim.o.pumblend,
 					scrollbar = false,
-					winblend = 5,
 					draw = {
 						columns = {
 							{ "kind_icon" },
@@ -36,9 +31,6 @@ return {
 				},
 				documentation = {
 					auto_show = true,
-					window = {
-						winblend = 5,
-					},
 				},
 				ghost_text = {
 					enabled = true,
