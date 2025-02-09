@@ -19,5 +19,5 @@ keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
 
 -- diagnostic
-keymap.set("n", "]e", vim.diagnostic.goto_next)
-keymap.set("n", "[e", vim.diagnostic.goto_prev)
+-- keymap.set("n", "]e", vim.diagnostic.goto_next)
+-- keymap.set("n", "[e", vim.diagnostic.goto_prev)
