@@ -10,7 +10,7 @@ return {
 		version = "*",
 		build = "cargo build --release",
 		event = "InsertEnter",
-		opts_entend = { "sources.default" },
+		opts_extend = { "sources.default" },
 		opts = {
 			keymap = { preset = "enter" },
 			sources = {
