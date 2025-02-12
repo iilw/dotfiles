@@ -7,17 +7,32 @@ return {
 		opts = {},
 	},
 	{
-		"ggandor/leap.nvim",
-		config = function()
-			require("leap").add_default_mappings(true)
-		end,
-	},
-	{
 		"folke/trouble.nvim",
 		keys = {
 			{
 				"<leader>xx",
 				"<cmd>Trouble diagnostics toggle<cr>",
+			},
+		},
+		opts = {},
+	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+			},
+			{
+				"S",
+				mode = { "n", "o", "x" },
+				function()
+					require("flash").treesitter()
+				end,
 			},
 		},
 		opts = {},

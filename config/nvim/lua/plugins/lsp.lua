@@ -101,7 +101,6 @@ return {
 			mr.refresh(function()
 				for _, tool in ipairs(opts.ensure_installed) do
 					local p = mr.get_package(tool)
-					vim.notify(tool)
 					if not p:is_installed() then
 						p:install()
 					end
