@@ -11,10 +11,9 @@ return {
 		event = "BufReadPost",
 		dependencies = {
 			{ "saghen/blink.cmp" },
-			{ "williamboman/mason-lspconfig.nvim" },
+			{ "williamboman/mason-lspconfig.nvim", config = function() end },
 		},
 		opts = {
-			diagnostics = {},
 			servers = {
 				lua_ls = {
 					settings = {
@@ -59,6 +58,13 @@ return {
 						setup_keymaps(buffer)
 					end,
 				}, servers[server] or {})
+
+				if opts.setup[server] then
+					if opts.setup[server](server_opts) then
+						return
+					end
+				end
+
 				lsp[server].setup(server_opts)
 			end
 
@@ -74,7 +80,9 @@ return {
 		build = ":MasonUpdate",
 		opts_extend = { "ensure_installed" },
 		opts = {
-			ensure_installed = {},
+			ensure_installed = {
+				"stylua",
+			},
 		},
 		config = function(_, opts)
 			require("mason").setup(opts)
