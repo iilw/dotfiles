@@ -37,4 +37,9 @@ return {
 		},
 		opts = {},
 	},
+	{
+		"lewis6991/gitsigns.nvim",
+		evnet = "LazyFile",
+		opts = {},
+	},
 }
