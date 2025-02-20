@@ -28,16 +28,11 @@ return {
 			local actions = require("telescope.actions")
 			return {
 				defaults = {
-					prompt_prefix = " ",
 					selection_caret = " ",
 					theme = "dropdown",
 					sorting_strategy = "ascending",
 					layout_config = { prompt_position = "top" },
-					path_display = {
-						filename_first = {
-							reverse_directories = true,
-						},
-					},
+					file_ignore_patterns = { ".git/" },
 					mappings = {
 						n = {
 							["q"] = actions.close,

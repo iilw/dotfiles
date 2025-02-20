@@ -10,6 +10,7 @@ opt.termguicolors = true
 opt.confirm = true
 opt.showmode = false
 
+opt.winblend = 15
 opt.pumblend = 15
 opt.cmdheight = 1
 
