@@ -5,6 +5,11 @@ return {
 		opts = {},
 	},
 	{
+		"folke/ts-comments.nvim",
+		opts = {},
+		event = "VeryLazy",
+	},
+	{
 		"saghen/blink.cmp",
 		dependencies = { "rafamadriz/friendly-snippets", "giuxtaposition/blink-cmp-copilot" },
 		version = "*",
