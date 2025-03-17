@@ -18,12 +18,7 @@ alias brew="env PATH=(string replace (pyenv root)/shims '' \"\$PATH\") brew"
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 
 set -gx EDITOR nvim
-
-# cocopoilot
-set GH_OVERRIDE_SHELL_FILE "$HOME/.copilot.override.sh"
-if test -f "$GH_OVERRIDE_SHELL_FILE"
-    source "$GH_OVERRIDE_SHELL_FILE"
-end
+set -gx XDG_RUNTIME_DIR ~/.runtime
 
 
 # Tmux 
@@ -56,4 +51,11 @@ abbr gg lazygit
 abbr cls clear
 # proxy
 alias proxy "export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
+proxy # default again
 alias unproxy "export http_proxy= https_proxy= all_proxy="
+
+
+set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+if test -f $LOCAL_CONFIG
+    source $LOCAL_CONFIG
+end
