@@ -27,3 +27,7 @@ opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
 opt.breakindent = true
+
+opt.laststatus = 3
+
+-- vim.g.copilot_proxy = "https://deepseek.ddlink.asia"

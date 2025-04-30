@@ -1,8 +1,8 @@
 local keymaps = {
 	{ key = "gd", cmd = "<cmd>lua vim.lsp.buf.definition()<cr>" },
 	{ key = "K", cmd = "<cmd>lua vim.lsp.buf.hover()<cr>" },
-	-- { key = "[e", cmd = "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
-	-- { key = "]e", cmd = "<cmd>lua vim.diagnostic.goto_next()<cr>" },
+	{ key = "[e", cmd = "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
+	{ key = "]e", cmd = "<cmd>lua vim.diagnostic.goto_next()<cr>" },
 }
 
 return {

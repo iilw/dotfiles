@@ -55,17 +55,7 @@ return {
 		"zbirenbaum/copilot.lua",
 		dependencies = { "giuxtaposition/blink-cmp-copilot" },
 		cmd = "Copilot",
-		build = ":Copilot auth",
-		event = "BufReadPost",
-		opts = {
-			-- auth_provider_url = "https://deepseek.ddlink.asia",
-			server_opts_overrides = {
-				-- advanced = {
-				-- 	debug = {
-				-- 		overrideProxyUrl = "https://copilot-proxy.deepseek.ddlink.asia",
-				-- 	},
-				-- },
-			},
-		},
+		event = "InsertEnter",
+		opts = {},
 	},
 }
