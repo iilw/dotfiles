@@ -1,33 +1,24 @@
-local opt = vim.opt
+vim.g.mapleader = " "
 
--- basic
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
-opt.number = true
-opt.relativenumber = true
-opt.cursorline = true
-opt.termguicolors = true
-opt.confirm = true
-opt.showmode = false
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
 
--- opt.winblend = 15
--- opt.pumblend = 15
-opt.cmdheight = 1
+vim.opt.autoindent = true
+vim.opt.hlsearch = true
+vim.opt.showcmd = true
+vim.opt.laststatus = 3
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.scrolloff = 10
+vim.opt.backup = false
+vim.opt.wrap = false
+vim.opt.breakindent = true
+vim.opt.mouse = "a"
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitkeep = "cursor"
 
-opt.mouse = ""
-opt.clipboard = "unnamedplus"
-opt.undofile = true
-opt.wrap = false
-opt.scrolloff = 8
-
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.softtabstop = 2
-opt.expandtab = true
-opt.autoindent = true
-opt.smartindent = true
-opt.breakindent = true
-
-opt.laststatus = 3
-
--- vim.g.copilot_proxy = "https://deepseek.ddlink.asia"
+vim.g.lazyvim_picker = "telescope"

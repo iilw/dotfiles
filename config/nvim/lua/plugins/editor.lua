@@ -1,45 +1,51 @@
 return {
 	{
-		"smjonas/inc-rename.nvim",
-		keys = {
-			{ "gr", ":IncRename " },
-		},
-		opts = {},
-	},
-	{
-		"folke/trouble.nvim",
+		"nvim-telescope/telescope.nvim",
+		dependencies = { "nvim-telescope/telescope-file-browser.nvim" },
 		keys = {
 			{
-				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
-			},
-		},
-		opts = {},
-	},
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		keys = {
-			{
-				"s",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").jump()
-				end,
+				";f",
+				LazyVim.pick("files"),
 			},
 			{
-				"S",
-				mode = { "n", "o", "x" },
+				";r",
+				LazyVim.pick("live_grep"),
+			},
+			{
+				";;",
+				"<cmd>Telescope resume<cr>",
+			},
+			{
+				"sf",
 				function()
-					require("flash").treesitter()
+					local t = require("telescope")
+					t.extensions.file_browser.file_browser({
+						path = "%:p:h",
+						cwd = vim.fn.expand("%:p:h"),
+						grouped = true,
+						previewer = false,
+						initial_mode = "normal",
+						layout_config = { horizontal = { width = 70 } },
+					})
 				end,
 			},
 		},
-		opts = {},
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		evnet = "LazyFile",
-		opts = {},
+		opts = {
+			defaults = {
+				theme = "dropdown",
+				-- layout_config
+				layout_config = {
+					prompt_position = "top",
+				},
+				sorting_strategy = "ascending",
+				-- path
+				path_display = {
+					"filename_first",
+				},
+				-- ui
+				results_title = "",
+				-- previewer
+			},
+		},
 	},
 }
