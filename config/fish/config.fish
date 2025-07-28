@@ -14,6 +14,9 @@ fish_add_path $HOME/.cargo.
 
 # pyenv
 alias brew="env PATH=(string replace (pyenv root)/shims '' \"\$PATH\") brew"
+set -Ux PYENV_ROOT $HOME/.pyenv
+set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+
 
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
 
@@ -59,3 +62,7 @@ set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
 if test -f $LOCAL_CONFIG
     source $LOCAL_CONFIG
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
