@@ -6,5 +6,9 @@
       "  return (${2:<div></div>})",
       "}"
     ]
+  },
+  "Export function {{name}}": {
+    "prefix": "ef",
+    "body": ["export function ${1:Name}() {", "  return (${2:null})", "}"]
   }
 }
