@@ -23,6 +23,8 @@ set -gx ANDROID_HOME $HOME/Library/Android/sdk
 set -gx EDITOR nvim
 set -gx XDG_RUNTIME_DIR ~/.runtime
 
+# task master
+abbr tm task-master
 
 # Tmux 
 abbr t tmux
@@ -66,3 +68,16 @@ end
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+
+# pnpm
+set -gx PNPM_HOME /Users/devling/Library/pnpm
+if not string match -q -- $PNPM_HOME $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
+
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :

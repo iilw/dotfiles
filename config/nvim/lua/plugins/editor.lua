@@ -8,8 +8,16 @@ return {
 				LazyVim.pick("files"),
 			},
 			{
+				";F",
+				LazyVim.pick("files", { path = "%:p:h", cwd = vim.fn.expand("%:p:h") }),
+			},
+			{
 				";r",
 				LazyVim.pick("live_grep"),
+			},
+			{
+				";R",
+				LazyVim.pick("live_grep", { path = "%:p:h", cwd = vim.fn.expand("%:p:h") }),
 			},
 			{
 				";;",
@@ -25,7 +33,7 @@ return {
 						grouped = true,
 						previewer = false,
 						initial_mode = "normal",
-						layout_config = { horizontal = { width = 70 } },
+						layout_config = { horizontal = { width = 100 } },
 					})
 				end,
 			},
@@ -39,11 +47,11 @@ return {
 				},
 				sorting_strategy = "ascending",
 				-- path
-				path_display = {
-					"filename_first",
-				},
+				-- path_display = {
+				-- 	"filename_first",
+				-- },
 				-- ui
-				results_title = "",
+				-- results_title = "",
 				-- previewer
 			},
 		},
