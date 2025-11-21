@@ -23,6 +23,8 @@ set -gx ANDROID_HOME $HOME/Library/Android/sdk
 set -gx EDITOR nvim
 set -gx XDG_RUNTIME_DIR ~/.runtime
 
+set -gx XDG_CONFIG_HOME $HOME/.config
+
 # task master
 abbr tm task-master
 
