@@ -1,0 +1,7 @@
+{
+  "Log the console": {
+    "prefix": "log",
+    "boyd": ["console.log($1);"],
+    "description": "Log to the console"
+  }
+}
