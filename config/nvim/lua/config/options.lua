@@ -22,3 +22,10 @@ vim.opt.splitright = true
 vim.opt.splitkeep = "cursor"
 
 vim.g.lazyvim_picker = "telescope"
+
+-- add rounded
+vim.diagnostic.config({
+	float = {
+		border = "rounded",
+	},
+})
