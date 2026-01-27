@@ -2,10 +2,18 @@ fishd.*
 .DS_Store
 
 
-# Fish config
-config/fish/fish_history
-config/fish/fish_variables
+# Fish local/private
 config/fish/config-local.fish
+config/fish/conf.d/*local*.fish
+config/fish/secrets*.fish
+# fish universal vars
+config/fish/fish_variables
+# fish others
+config/fish/fish_history
+config/fish/conf.d/*
+config/fish/functions/*
+config/fish/completions/*
+
 
 # tmux
 config/tmux/plugins
