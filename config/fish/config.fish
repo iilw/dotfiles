@@ -13,9 +13,8 @@ fish_add_path $HOME/.cargo.
 # fish_add_path ~/flutter/flutter/bin
 
 # pyenv
-alias brew="env PATH=(string replace (pyenv root)/shims '' \"\$PATH\") brew"
 set -Ux PYENV_ROOT $HOME/.pyenv
-set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
 
 
 set -gx ANDROID_HOME $HOME/Library/Android/sdk
