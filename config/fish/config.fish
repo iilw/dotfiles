@@ -56,10 +56,6 @@ abbr gg lazygit
 
 # Other
 abbr cls clear
-# proxy
-alias proxy "export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
-proxy # default again
-alias unproxy "export http_proxy= https_proxy= all_proxy="
 
 
 set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
