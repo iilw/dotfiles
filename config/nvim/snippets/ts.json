@@ -1,7 +1,7 @@
 {
-  "Log the console": {
+  "Log to the console": {
     "prefix": "log",
-    "boyd": ["console.log($1);"],
+    "body": ["console.log($1);"],
     "description": "Log to the console"
   }
 }
