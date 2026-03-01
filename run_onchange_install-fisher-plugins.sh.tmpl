@@ -1,0 +1,19 @@
+#!/bin/bash
+# fish_plugins hash: {{ include "dot_config/private_fish/fish_plugins" | sha256sum }}
+
+set -euo pipefail
+
+if ! command -v fish &>/dev/null; then
+  echo "fish shell not found, skipping fisher plugin installation"
+  exit 0
+fi
+
+# Install fisher if not present
+if ! fish -c "type -q fisher" 2>/dev/null; then
+  echo "Installing fisher..."
+  fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+fi
+
+# Install/update plugins from fish_plugins
+echo "Updating fisher plugins..."
+fish -c "fisher update"
