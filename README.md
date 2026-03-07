@@ -1,6 +1,6 @@
 # dotfiles (chezmoi)
 
-个人开发环境配置仓库，使用 [chezmoi](https://www.chezmoi.io/) 管理。
+个人开发环境配置仓库，使用 [chezmoi](https://www.chezmoi.io/) 管理
 
 当前包含的主要配置：
 - `fish`（别名、abbr、PATH、Node/Python/Bun/PNPM 环境变量）
