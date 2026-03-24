@@ -1,9 +1,8 @@
 return {
 	{
 		"L3MON4D3/LuaSnip",
+    build = "make install_jsregexp",
 		dependencies = { "rafamadriz/friendly-snippets" },
-		keys = {},
-		opts = function() end,
 		config = function(_, opts)
 			local luasnip = require("luasnip")
 			luasnip.setup(opts)
