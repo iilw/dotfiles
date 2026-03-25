@@ -73,6 +73,7 @@ chezmoi source-path
 - `fish`
 - `neovim`（建议 >= 0.11）
 - `tmux`
+- `folke/tokyonight.nvim`（`tmux` 主题依赖，默认读取 `~/ghq/github.com/folke/tokyonight.nvim/extras/tmux/tokyonight_day.tmux`）
 - `git`
 - `ripgrep`
 - `fd`
@@ -92,6 +93,13 @@ macOS 可按需使用 Homebrew 安装：
 ```bash
 brew install fish neovim tmux git ripgrep fd fzf eza lazygit neofetch \
   lua-language-server stylua prettier shfmt rustup-init
+```
+
+`folke/tokyonight.nvim` 还需要额外拉取到本地：
+
+```bash
+mkdir -p ~/ghq/github.com/folke
+git clone https://github.com/folke/tokyonight.nvim ~/ghq/github.com/folke/tokyonight.nvim
 ```
 
 ## 本地修改与提交
