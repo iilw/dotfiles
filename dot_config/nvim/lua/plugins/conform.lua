@@ -16,6 +16,7 @@ return {
 				markdown = { "prettier" },
 				scss = { "prettier" },
 				yaml = { "prettier" },
+        python = { "ruff_format" }
 			},
 			format_on_save = {
 				timout_ms = 500,
