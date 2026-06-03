@@ -12,6 +12,22 @@ return {
 					["vim.lsp.util.stylize_markdown"] = true,
 				},
 			},
+			routes = {
+				{
+					filter = {
+						event = "notify",
+						find = "No information available",
+					},
+					opts = { skip = true },
+				},
+				{
+					filter = {
+						event = "notify",
+						find = "Empty hover response",
+					},
+					opts = { skip = true },
+				},
+			},
 			presets = {
 				inc_rename = true,
 				lsp_doc_border = true,

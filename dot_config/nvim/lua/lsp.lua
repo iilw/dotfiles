@@ -37,6 +37,12 @@ local function on_attach(client, bufnr)
 		vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
 	end, "Previous error")
 
+	if client:supports_method(methods.textDocument_hover, bufnr) then
+		keymap("K", function()
+			vim.lsp.buf.hover({ silent = true })
+		end, "Hover documentation")
+	end
+
 	if client:supports_method(methods.textDocument_references) then
 		keymap("grr", "<cmd>Telescope lsp_references<cr>", "vim.lsp.buf.references()")
 	end
