@@ -1,5 +1,7 @@
 -- Disable lsp
 local disabled = {
+	tailwindcss = true,
+	ts_ls = true,
 	tsgo = true,
 }
 
@@ -18,10 +20,13 @@ local function on_attach(client, bufnr)
 	--- @param mode? string|string[]
 	local function keymap(lhs, rhs, opts, mode)
 		mode = mode or "n"
-		--- @cast opts vim.keymap.set.Opts
-		opts = type(opts) == "string" and { desc = opts } or opts
-		opts.buffer = bufnr
-		vim.keymap.set(mode, lhs, rhs, opts)
+		local keymap_opts
+		if type(opts) == "string" then
+			keymap_opts = { desc = opts, buffer = bufnr }
+		else
+			keymap_opts = vim.tbl_extend("force", opts, { buffer = bufnr })
+		end
+		vim.keymap.set(mode, lhs, rhs, keymap_opts)
 	end
 
 	keymap("]d", function()
