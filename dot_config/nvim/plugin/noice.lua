@@ -1,10 +1,14 @@
-return {
+require("vim-pack").add({
 	{
-		"folke/noice.nvim",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
+		src = "MunifTanjim/nui.nvim",
+		setup = false,
+	},
+	{
+		src = "rcarriga/nvim-notify",
+		setup = false,
+	},
+	{
+		src = "folke/noice.nvim",
 		opts = {
 			lsp = {
 				override = {
@@ -34,4 +38,4 @@ return {
 			},
 		},
 	},
-}
+})

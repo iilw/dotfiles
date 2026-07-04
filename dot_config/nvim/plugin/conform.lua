@@ -1,9 +1,6 @@
-return {
+require("vim-pack").add_on_event("BufWritePre", {
 	{
-		"stevearc/conform.nvim",
-		lazy = true,
-		cmd = "ConformInfo",
-		event = "BufWritePre",
+		src = "stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -16,7 +13,7 @@ return {
 				markdown = { "prettier" },
 				scss = { "prettier" },
 				yaml = { "prettier" },
-        python = { "ruff_format" }
+				python = { "ruff_format" },
 			},
 			format_on_save = {
 				timout_ms = 500,
@@ -24,4 +21,4 @@ return {
 			},
 		},
 	},
-}
+})
