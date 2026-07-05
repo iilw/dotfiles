@@ -32,6 +32,8 @@ alt - f : yabai -m window --toggle zoom-parent
 alt - e : yabai -m window --toggle float --toggle border
 # 自动平衡当前屏幕收窗口大小
 alt - r : yabai -m space --balance
+# 关闭当前窗口
+alt - w : yabai -m window --close
 # 5. 夸桌面快速穿梭
 alt - 1 : yabai -m space --focus 1
 alt - 2 : yabai -m space --focus 2
@@ -43,5 +45,6 @@ alt - 7 : yabai -m space --focus 7
 alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
 alt - 0 : yabai -m space --focus 10
-# 6. 一键重启
+# 6. 服务管理
+# 一键重启
 alt + shift - r : yabai --restart-service
