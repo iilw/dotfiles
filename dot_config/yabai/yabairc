@@ -1,0 +1,160 @@
+#!/usr/bin/env bash
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+###############################################################################
+#                          Custom padding settings
+###############################################################################
+
+if command -v sketchybar &>/dev/null; then
+  display_resolution=$(system_profiler SPDisplaysDataType | grep Resolution)
+
+  yabai -m config top_padding 48
+  yabai -m config bottom_padding 8
+  yabai -m config left_padding 8
+  yabai -m config right_padding 8
+fi
+
+###############################################################################
+#                               Transparency
+###############################################################################
+
+yabai -m config window_opacity off
+
+opacity_value=0.9
+
+###############################################################################
+#                             sub-layer=normal
+###############################################################################
+
+# https://github.com/koekeishiya/yabai/issues/1929
+yabai -m rule --add app=".*" sub-layer=normal
+
+###############################################################################
+#                              Signal events
+###############################################################################
+
+###############################################################################
+#                                Defaults
+###############################################################################
+
+yabai -m config \
+  auto_balance off \
+  split_ratio 0.50 \
+  split_type auto \
+  window_placement second_child \
+  window_shadow off \
+  window_animation_duration 0.0 \
+  window_opacity_duration 0.0 \
+  window_gap 08 \
+  mouse_modifier fn \
+  mouse_action1 move \
+  mouse_action2 resize \
+  mouse_drop_action swap
+
+###############################################################################
+#                             Yabai Spaces
+###############################################################################
+
+# bsp or float or stack
+yabai -m config layout stack
+
+
+yabai -m space 1 --label desk1
+yabai -m space 2 --label desk2 --layout bsp
+yabai -m space 3 --label desk3 
+yabai -m space 4 --label desk4
+yabai -m space 5 --label desk5 
+yabai -m space 6 --label desk6
+yabai -m space 7 --label desk7
+yabai -m space 8 --label desk8
+yabai -m space 9 --label desk9
+yabai -m space 10 --label desk10
+
+displays_json="$(yabai -m query --displays)"
+display_count="$(echo "$displays_json" | jq 'length')"
+
+
+if [ "$display_count" -eq 1 ]; then
+  yabai -m space 1 --label Main
+  yabai -m space 2 --label Main-Term --layout bsp
+  yabai -m space 3 --label Main-Xcode --layout bsp
+elif [ "$display_count" -eq 3 ]; then
+  main_display_id="$(
+    echo "$displays_json" |
+      jq 'max_by(.spaces | length) | .id'
+  )"
+
+  main_display_spaces="$(
+    echo "$displays_json" |
+      jq --argjson main_display_id "$main_display_id" '
+        map(select(.id == $main_display_id))[0].spaces
+      '
+    )"
+
+  left_display_spaces="$(
+    echo "$displays_json" |
+      jq --argjson main_display_id "$main_display_id" '
+        map(select(.id != $main_display_id))
+        | sort_by(.frame.x)
+        | .[0].spaces
+      '
+  )"
+  right_display_spaces="$(
+    echo "$displays_json" |
+      jq --argjson main_display_id "$main_display_id" '
+        map(select(.id != $main_display_id))
+        | sort_by(.frame.x)
+        | .[1].spaces
+      '
+    )"
+
+    main1="$(echo "$main_display_spaces" | jq '.[0]')"
+    main2="$(echo "$main_display_spaces" | jq '.[1]')"
+    main3="$(echo "$main_display_spaces" | jq '.[2]')"
+    main4="$(echo "$main_display_spaces" | jq '.[3]')"
+
+    left1="$(echo "$left_display_spaces" | jq '.[0]')"
+    left2="$(echo "$left_display_spaces" | jq '.[1]')"
+
+    right1="$(echo "$right_display_spaces" | jq '.[0]')"
+    right2="$(echo "$right_display_spaces" | jq '.[1]')"
+
+    # 中间27寸主屏
+    yabai -m space "$main1" --label Main
+    yabai -m space "$main2" --label Main-Term --layout bsp
+    yabai -m space "$main3" --label Main-Xcode --layout float
+    yabai -m space "$main4" --label Main-Dotfiles --layout bsp
+
+    # 左边Macbook
+    yabai -m space "$left1" --label Left
+    yabai -m space "$left2" --label Left-Chat --layout float
+
+    # 右边竖屏
+    yabai -m space "$right1" --label Right --layout bsp
+    yabai -m space "$right2" --label Right2
+
+    # Macbook padding
+    yabai -m config --space "$left1" top_padding 18
+    yabae -m config --space "$left2" top_padding 18
+fi
+
+yabai -m rule --add app="^.*$" space="Main"
+yabai -m rule --add app="^Ghostty$" space="Main-Term"
+yabai -m rule --add app="^kitty$" space="Main-Dotfiles"
+yabai -m rule --add app="^Xcode$" space="Main-Xcode"
+yabai -m rule --add app="^Simulator$" space="Main-Xcode"
+
+
+# 左边工具
+yabai -m rule --add app="^ChatGPT$" space="Left"
+yabai -m rule --add app="^WeChat$" space="Left-Chat"
+yabai -m rule --add app="^Stickies$" space="Left-Chat"
+yabai -m rule --add app="^QQ$" space="Left-Chat"
+
+# 右边竖屏
+yabai -m rule --add app="^Google Chrome$" space="Right"
+yabai -m rule --add app="^Safari$" space="Right"
+
+yabai -m rule --apply
