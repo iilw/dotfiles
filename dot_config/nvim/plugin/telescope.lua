@@ -22,6 +22,8 @@ add({
 				},
 				extensions = {
 					file_browser = {
+            cwd = "%:p:h",
+            path = "%:p:h",
 						layout_config = { horizontal = { width = 100 } },
 						initial_mode = "normal",
 						previewer = false,

@@ -1,7 +1,20 @@
 #!/usr/bin/env bash
 
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
+# ======================== 全局设定 ==========================
+
+# 自动平衡: 打开窗口自动调整收窗口大小
+yabai -m config auto_balance off
+# 默认新窗口比例
+yabai -m config split_ratio 0.50
+# 设置布局模式: bsp(自动平铺) | float | stack(层叠)
+yabai -m config layout stack
+# 新窗口位置: first_child | second_child(右下方)
+yabai -m config window_placement second_child
+# 窗口间距
+yabai -m config window_gap 10
+# 窗口shadow: on | off | float
+yabai -m config window_shadow off
+
 
 ###############################################################################
 #                          Custom padding settings
@@ -39,26 +52,10 @@ yabai -m rule --add app=".*" sub-layer=normal
 #                                Defaults
 ###############################################################################
 
-yabai -m config \
-  auto_balance off \
-  split_ratio 0.50 \
-  split_type auto \
-  window_placement second_child \
-  window_shadow off \
-  window_animation_duration 0.0 \
-  window_opacity_duration 0.0 \
-  window_gap 08 \
-  mouse_modifier fn \
-  mouse_action1 move \
-  mouse_action2 resize \
-  mouse_drop_action swap
 
 ###############################################################################
 #                             Yabai Spaces
 ###############################################################################
-
-# bsp or float or stack
-yabai -m config layout stack
 
 
 yabai -m space 1 --label desk1
@@ -137,10 +134,16 @@ elif [ "$display_count" -eq 3 ]; then
 
     # Macbook padding
     yabai -m config --space "$left1" top_padding 18
-    yabae -m config --space "$left2" top_padding 18
+    yabai -m config --space "$left2" top_padding 18
 fi
 
-yabai -m rule --add app="^.*$" space="Main"
+# ======================== 应用规则(Window Rules) ==========================
+
+apps_mgoff="(Calculator|Notes|Finder)"
+
+# 黑名单
+yabai -m rule --add app="^${apps_mgoff}$" manage=off 
+
 yabai -m rule --add app="^Ghostty$" space="Main-Term"
 yabai -m rule --add app="^kitty$" space="Main-Dotfiles"
 yabai -m rule --add app="^Xcode$" space="Main-Xcode"
