@@ -139,7 +139,7 @@ fi
 
 # ======================== 应用规则(Window Rules) ==========================
 
-apps_mgoff="(Calculator|Notes|Finder)"
+apps_mgoff="(Calculator|Notes|Finder|Xnapper)"
 
 # 黑名单
 yabai -m rule --add app="^${apps_mgoff}$" manage=off 
