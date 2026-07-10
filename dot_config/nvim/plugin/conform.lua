@@ -16,7 +16,7 @@ require("vim-pack").add_on_event("BufWritePre", {
 				python = { "ruff_format" },
 			},
 			format_on_save = {
-				timout_ms = 500,
+				timeout_ms = 500,
 				lsp_format = "fallback",
 			},
 		},

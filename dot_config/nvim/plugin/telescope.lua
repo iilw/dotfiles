@@ -38,7 +38,7 @@ add({
 			t.load_extension("file_browser")
 
       vim.keymap.set("n", ";f", "<cmd>Telescope find_files<cr>")
-      vim.keymap.set("n", ";F", "<cmd>Telescope find_files hidden=false<cr>")
+      vim.keymap.set("n", ";F", "<cmd>Telescope find_files hidden=true<cr>")
       vim.keymap.set("n", ";r", "<cmd>Telescope live_grep<cr>")
       vim.keymap.set("n", ";;", "<cmd>Telescope resume<cr>")
       vim.keymap.set("n", "sf", "<cmd>Telescope file_browser<cr>")

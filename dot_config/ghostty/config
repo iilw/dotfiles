@@ -5,4 +5,5 @@ font-size = 14
 
 # theme
 theme = TokyoNight Day
-background-opacity = 0.98
+background-opacity = 0.88
+background-blur = true
