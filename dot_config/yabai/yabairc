@@ -1,163 +1,113 @@
 #!/usr/bin/env bash
 
-# ======================== 全局设定 ==========================
+# 基础 yabai 配置
+# 文档: https://github.com/koekeishiya/yabai/wiki
 
-# 自动平衡: 打开窗口自动调整收窗口大小
-yabai -m config auto_balance off
-# 默认新窗口比例
-yabai -m config split_ratio 0.50
-# 设置布局模式: bsp(自动平铺) | float | stack(层叠)
-yabai -m config layout stack
-# 新窗口位置: first_child | second_child(右下方)
+# mbp屏幕uuid
+# yabai -m query --displays
+MBP_UUID="37D8832A-2D66-02CA-B9F7-8F30A301B230"
+
+# ======================== 全局设置 ========================
+
+# 默认布局: bsp 自动平铺；需要临时浮动时可用 skhd 绑定切换
+# 可选: bsp | stack | float
+yabai -m config layout bsp
+# 新窗口默认放在当前窗口右侧/下方
 yabai -m config window_placement second_child
-# 窗口间距
+# 新窗口分割比例
+yabai -m config split_ratio 0.50
+# 自动平衡窗口大小：off 更符合手动调整习惯；想自动均分可改为 on
+yabai -m config auto_balance off
+# 窗口间距与屏幕边距
 yabai -m config window_gap 10
-# 窗口shadow: on | off | float
+# 如果有sketchybar下面脚本适配
+yabai -m config top_padding 48
+yabai -m config bottom_padding 12
+yabai -m config left_padding 12
+yabai -m config right_padding 12
+# 关闭 yabai 自带透明度/阴影，减少视觉干扰
+yabai -m config window_opacity off
 yabai -m config window_shadow off
+# 鼠标辅助：按住 fn + 鼠标左键拖动窗口，fn + 右键调整窗口大小
+yabai -m config mouse_modifier fn
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+yabai -m config mouse_follows_focus off
+yabai -m config focus_follows_mouse off
 
 
-###############################################################################
-#                          Custom padding settings
-###############################################################################
+# MBP屏幕设置18
+if command -v sketchybar >/dev/null 2>&1; then
+  mbp_spaces=$(yabai -m query --displays | awk -v uuid="$MBP_UUID" '
+    BEGIN { RS="}"; FS="," }
+    $0 ~ uuid {
+      # 在匹配到 UUID 的大括号块中，寻找 "spaces":[...] 这一行
+      if (match($0, /"spaces":\[[0-9, ]+\]/)) {
+        spaces_part = substr($0, RSTART, RLENGTH)
+        # 去掉 JSON 的 [ ] 符号以及 "spaces": 前缀
+        gsub(/["spaces":\[\]]/, "", spaces_part)
+        # 替换逗号为空格，输出干净的数字列表，例如 "5 6"
+        gsub(/,/, " ", spaces_part)
+        print spaces_part
+      }
+    }
+  ')
 
-if command -v sketchybar &>/dev/null; then
-  display_resolution=$(system_profiler SPDisplaysDataType | grep Resolution)
-
-  yabai -m config top_padding 48
-  yabai -m config bottom_padding 8
-  yabai -m config left_padding 8
-  yabai -m config right_padding 8
+  if [ -n "$mbp_spaces" ]; then
+    for space in $mbp_spaces; do
+      yabai -m config --space "$space" top_padding 18 &
+    done
+    wait
+  fi
 fi
 
-###############################################################################
-#                               Transparency
-###############################################################################
-
-yabai -m config window_opacity off
-
-opacity_value=0.9
-
-###############################################################################
-#                             sub-layer=normal
-###############################################################################
-
-# https://github.com/koekeishiya/yabai/issues/1929
+# 让所有窗口保持 normal 层级，避免部分窗口异常压住其它窗口
+# 参考: https://github.com/koekeishiya/yabai/issues/1929
 yabai -m rule --add app=".*" sub-layer=normal
 
-###############################################################################
-#                              Signal events
-###############################################################################
+# ======================== Space 标签 ========================
+# 给常用桌面命名，方便规则和快捷键按名字跳转
+yabai -m space 1 --label Projects
+yabai -m space 2 --label Dotfiles
+yabai -m space 3 --label Common --layout float
+yabai -m space 4 --label Youtube
+yabai -m space 5 --label Web
+yabai -m space 6 --label Chat --layout float
 
-###############################################################################
-#                                Defaults
-###############################################################################
+# ======================== 窗口规则 ========================
 
+yabai -m rule --add app="System Settings" manage=off           
+yabai -m rule --add app="System Preferences" manage=off           
+yabai -m rule --add app="Activity Monitor" manage=off           
+yabai -m rule --add app="Notes" manage=off           
+yabai -m rule --add app="Stickies" manage=off           
+yabai -m rule --add app="Finder" manage=off           
+yabai -m rule --add app="VibeStoreClient" manage=off           
+yabai -m rule --add app="Alfred Preferences" manage=off           
+yabai -m rule --add app="Music" manage=off           
 
-###############################################################################
-#                             Yabai Spaces
-###############################################################################
-
-
-yabai -m space 1 --label desk1
-yabai -m space 2 --label desk2 --layout bsp
-yabai -m space 3 --label desk3 
-yabai -m space 4 --label desk4
-yabai -m space 5 --label desk5 
-yabai -m space 6 --label desk6
-yabai -m space 7 --label desk7
-yabai -m space 8 --label desk8
-yabai -m space 9 --label desk9
-yabai -m space 10 --label desk10
-
-displays_json="$(yabai -m query --displays)"
-display_count="$(echo "$displays_json" | jq 'length')"
+yabai -m rule --add app="^(Preferences|Settings|About|Alfred).*$" manage=off
 
 
-if [ "$display_count" -eq 1 ]; then
-  yabai -m space 1 --label Main
-  yabai -m space 2 --label Main-Term --layout bsp
-  yabai -m space 3 --label Main-Xcode --layout bsp
-elif [ "$display_count" -eq 3 ]; then
-  main_display_id="$(
-    echo "$displays_json" |
-      jq 'max_by(.spaces | length) | .id'
-  )"
-
-  main_display_spaces="$(
-    echo "$displays_json" |
-      jq --argjson main_display_id "$main_display_id" '
-        map(select(.id == $main_display_id))[0].spaces
-      '
-    )"
-
-  left_display_spaces="$(
-    echo "$displays_json" |
-      jq --argjson main_display_id "$main_display_id" '
-        map(select(.id != $main_display_id))
-        | sort_by(.frame.x)
-        | .[0].spaces
-      '
-  )"
-  right_display_spaces="$(
-    echo "$displays_json" |
-      jq --argjson main_display_id "$main_display_id" '
-        map(select(.id != $main_display_id))
-        | sort_by(.frame.x)
-        | .[1].spaces
-      '
-    )"
-
-    main1="$(echo "$main_display_spaces" | jq '.[0]')"
-    main2="$(echo "$main_display_spaces" | jq '.[1]')"
-    main3="$(echo "$main_display_spaces" | jq '.[2]')"
-    main4="$(echo "$main_display_spaces" | jq '.[3]')"
-
-    left1="$(echo "$left_display_spaces" | jq '.[0]')"
-    left2="$(echo "$left_display_spaces" | jq '.[1]')"
-
-    right1="$(echo "$right_display_spaces" | jq '.[0]')"
-    right2="$(echo "$right_display_spaces" | jq '.[1]')"
-
-    # 中间27寸主屏
-    yabai -m space "$main1" --label Main
-    yabai -m space "$main2" --label Main-Term --layout bsp
-    yabai -m space "$main3" --label Main-Xcode --layout float
-    yabai -m space "$main4" --label Main-Dotfiles --layout bsp
-
-    # 左边Macbook
-    yabai -m space "$left1" --label Left
-    yabai -m space "$left2" --label Left-Chat --layout float
-
-    # 右边竖屏
-    yabai -m space "$right1" --label Right --layout bsp
-    yabai -m space "$right2" --label Right2
-
-    # Macbook padding
-    yabai -m config --space "$left1" top_padding 18
-    yabai -m config --space "$left2" top_padding 18
-fi
-
-# ======================== 应用规则(Window Rules) ==========================
-
-apps_mgoff="(Calculator|Notes|Finder|Xnapper)"
-
-# 黑名单
-yabai -m rule --add app="^${apps_mgoff}$" manage=off 
-
-yabai -m rule --add app="^Ghostty$" space="Main-Term"
-yabai -m rule --add app="^kitty$" space="Main-Dotfiles"
-yabai -m rule --add app="^Xcode$" space="Main-Xcode"
-yabai -m rule --add app="^Simulator$" space="Main-Xcode"
-
-
-# 左边工具
-yabai -m rule --add app="^ChatGPT$" space="Left"
-yabai -m rule --add app="^WeChat$" space="Left-Chat"
-yabai -m rule --add app="^Stickies$" space="Left-Chat"
-yabai -m rule --add app="^QQ$" space="Left-Chat"
-
-# 右边竖屏
-yabai -m rule --add app="^Google Chrome$" space="Right"
-yabai -m rule --add app="^Safari$" space="Right"
+# 常用 App 分配到指定 Space；不需要可以删掉或改成自己的 App 名称
+yabai -m rule --add app="^(kitty)$" space="Projects"
+yabai -m rule --add app="^(Ghostty)$" space="Dotfiles"
+yabai -m rule --add app="^(Google Chrome|Safari|Beave Browser)$" space="Web"
+yabai -m rule --add app="^(WeChat|QQ|Telegram})$" space="Chat"
 
 yabai -m rule --apply
+
+# ======================== Signals ========================
+
+# 如果安装了 borders，并且存在边框颜色脚本，则在切换焦点/应用/桌面时刷新边框颜色
+border_script="${HOME}/.config/yabai/update_border_color.sh"
+if command -v borders >/dev/null 2>&1 && [ -f "$border_script" ]; then
+  yabai -m signal --add event=window_focused action="bash '$border_script'"
+  yabai -m signal --add event=front_app_switched action="bash '$border_script'"
+  yabai -m signal --add event=space_changed action="bash '$border_script'"
+  bash "$border_script"
+fi
+
+# ======================== 启动提示 ========================
+
+echo "yabai config loaded"
