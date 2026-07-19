@@ -1,0 +1,251 @@
+#!/usr/bin/env bash
+
+# A compact, modern SketchyBar setup inspired by recent popular dotfiles:
+# rounded translucent bar, pill brackets, workspace chips, front app, and
+# lightweight system widgets.
+
+CONFIG_DIR="${CONFIG_DIR:-$HOME/.config/sketchybar}"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+SPACES=({1..10})
+
+export FONT="SF Pro"
+export ICON_FONT="Hack Nerd Font Mono"
+
+# TokyoNight Day palette (SketchyBar uses 0xAARRGGBB).
+export WHITE=0xff3760bf
+export TEXT=0xff3760bf
+export MUTED=0xff6172b0
+export SUBTLE=0xff8990b3
+export BLUE=0xff2e7de9
+export GREEN=0xff587539
+export YELLOW=0xff8c6c3e
+export RED=0xfff52a65
+export LAVENDER=0xff7847bd
+export BAR_BG=0xeee1e2e7
+export ITEM_BG=0x88d5d6db
+export ITEM_BG_HOVER=0xaac4c8da
+export BORDER=0x663760bf
+export TRANSPARENT=0x00000000
+
+# Keep reloading idempotent.
+sketchybar --remove '/.*/' >/dev/null 2>&1
+
+##### Bar #####
+sketchybar --bar \
+  position=top \
+  height=38 \
+  margin=8 \
+  y_offset=4 \
+  corner_radius=12 \
+  blur_radius=30 \
+  color=$BAR_BG \
+  shadow=off \
+  padding_left=8 \
+  padding_right=8
+
+##### Defaults #####
+default=(
+  updates=when_shown
+  padding_left=4
+  padding_right=4
+  icon.font="$ICON_FONT:Bold:18.0"
+  icon.color=$TEXT
+  icon.padding_left=8
+  icon.padding_right=6
+  label.font="$FONT:SemiBold:14.0"
+  label.color=$TEXT
+  label.padding_left=0
+  label.padding_right=8
+  background.color=$TRANSPARENT
+  background.corner_radius=9
+  background.height=26
+  popup.background.color=$BAR_BG
+  popup.background.corner_radius=10
+  popup.background.border_width=1
+  popup.background.border_color=$BORDER
+)
+sketchybar --default "${default[@]}"
+
+##### Left: launcher, spaces, front app #####
+sketchybar --add item apple left \
+  --set apple \
+    icon= \
+    icon.font="$FONT:Bold:21.0" \
+    icon.color=$BLUE \
+    label.drawing=off \
+    background.color=$ITEM_BG \
+    background.drawing=on \
+    click_script="open -a 'System Settings'"
+
+
+DISPLAYS_COUNT=$(sketchybar --query displays | jq '. | length')
+LAYOUTS=("bsp" "stack" "float")
+LAYOUT_ICONS=("󰘯" "󰙀" "󰉈")
+for ((d=1; d<=DISPLAYS_COUNT; d++)); do
+  sketchybar --add item layout.$d left \
+    --set layout.$d \
+      display=$d \
+      label.drawing=off \
+      update_freq=5 \
+      script="$PLUGIN_DIR/layout.sh" \
+      click_script="$PLUGIN_DIR/layout.sh toggle" \
+    --subscribe layout.$d space_change display_change system_woke
+
+  for i in "${!LAYOUTS[@]}"; do
+    name="${LAYOUTS[i]}"
+    icon="${LAYOUT_ICONS[i]}"
+
+    sketchybar --add item layout.$d.$name popup.layout.$d \
+      --set layout.$d.$name \
+        icon="$icon" \
+        label="$name" \
+        click_script="$PLUGIN_DIR/layout.sh $name"
+  done
+done
+
+sketchybar --add bracket layout_bracket layout.{1..10} \
+  --set layout_bracket \
+    background.color=$ITEM_BG \
+    background.corner_radius=10 \
+    background.height=28 \
+    background.border_width=1 \
+    background.border_color=$BORDER
+#
+# # Bracket backgrounds extend 4 pt beyond their items. Reserve a real gap so
+# # the layout and spaces brackets do not paint over one another.
+sketchybar --add item layout_gap left \
+  --set layout_gap \
+    width=8 \
+    icon.drawing=off \
+    label.drawing=off \
+    background.drawing=off
+
+for i in "${!SPACES[@]}"; do
+  sid=$((i + 1))
+  sketchybar --add space space.$sid left \
+    --set space.$sid \
+      space=$sid \
+      icon="${sid}" \
+      icon.font="$FONT:Bold:13.0" \
+      icon.color=$MUTED \
+      icon.highlight_color=$WHITE \
+      icon.padding_left=10 \
+      icon.padding_right=10 \
+      label.drawing=off \
+      background.color=$BLUE \
+      background.drawing=off \
+      background.corner_radius=8 \
+      background.height=24 \
+      script="$PLUGIN_DIR/space.sh" \
+      click_script="yabai -m space --focus $sid 2>/dev/null || true"
+done
+
+sketchybar --add bracket spaces '/space\.*/' \
+  --set spaces \
+    background.color=$ITEM_BG \
+    background.corner_radius=10 \
+    background.height=28 \
+    background.border_width=1 \
+    background.border_color=$BORDER
+
+sketchybar --add item chevron left \
+  --set chevron \
+    icon= \
+    icon.color=$SUBTLE \
+    label.drawing=off \
+    background.drawing=off
+
+sketchybar --add item front_app left \
+  --set front_app \
+    icon=󰣆 \
+    icon.color=$LAVENDER \
+    label.max_chars=34 \
+    background.color=$ITEM_BG \
+    background.drawing=on \
+    script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched
+
+##### Right: clock, system status #####
+# Right-side items are laid out in the order they are added, starting from
+# the screen edge. Add the clock first so it stays at the far right.
+sketchybar --add item clock right \
+  --set clock \
+    icon.drawing=off \
+    label.color=$TEXT \
+    label.padding_left=8 \
+    update_freq=30 \
+    background.color=$ITEM_BG \
+    background.drawing=on \
+    script="$PLUGIN_DIR/clock.sh"
+
+# The system pill contains battery, volume, and Wi-Fi. Battery and Wi-Fi are
+# icon-only; fixed widths keep the pill compact and visually balanced.
+sketchybar --add item wifi right \
+  --set wifi \
+    width=32 \
+    icon=󰖩 \
+    icon.color=$BLUE \
+    label.drawing=off \
+    update_freq=30 \
+    script="$PLUGIN_DIR/wifi.sh" \
+    click_script="$PLUGIN_DIR/wifi.sh" \
+  --subscribe wifi wifi_change system_woke mouse.clicked
+
+sketchybar --add item volume right \
+  --set volume \
+    width=32 \
+    icon.color=$LAVENDER \
+    label.drawing=off \
+    script="$PLUGIN_DIR/volume.sh" \
+    click_script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change mouse.clicked
+
+sketchybar --add item battery right \
+  --set battery \
+    width=32 \
+    icon.color=$YELLOW \
+    label.drawing=off \
+    update_freq=120 \
+    script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
+
+sketchybar --add item keyboard right \
+  --set keyboard \
+    width=32 \
+    script="$PLUGIN_DIR/keyboard.sh" \
+    label.drawing=on \
+  --add event keyboard_change "AppleSelectedInputSourcesChangedNotification" \
+  --subscribe keyboard keyboard_change
+
+# Fixed item widths make the system pill 126 pt wide (32 + 62 + 32).
+sketchybar --add bracket system wifi volume battery keyboard \
+  --set system \
+    background.color=$ITEM_BG \
+    background.corner_radius=10 \
+    background.height=28 \
+    background.border_width=1 \
+    background.border_color=$BORDER
+
+# Items added later on the right sit to the left of earlier items. Keep CPU
+# and memory together outside the pill, immediately to its left.
+sketchybar --add item cpu right \
+  --set cpu \
+    width=58 \
+    padding_right=12 \
+    icon= \
+    icon.color=$GREEN \
+    update_freq=5 \
+    script="$PLUGIN_DIR/cpu.sh"
+
+sketchybar --add item memory right \
+  --set memory \
+    width=58 \
+    padding_right=12 \
+    icon=󰍛 \
+    icon.color=$GREEN \
+    update_freq=5 \
+    script="$PLUGIN_DIR/memory.sh"
+
+# Run every script once after loading.
+sketchybar --update
