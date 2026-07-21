@@ -24,6 +24,9 @@ set -gx XDG_RUNTIME_DIR ~/.runtime
 
 set -gx XDG_CONFIG_HOME $HOME/.config
 
+# dotfiles
+alias config '/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
 # task master
 abbr tm task-master
 
