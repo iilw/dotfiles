@@ -75,10 +75,14 @@ end
 # pnpm end
 
 # fzf
-if status is-interactive
+if type -q fzf
   fzf --fish | source
 end
 
+# zoxide
+if type -q zoxide
+  zoxide init fish | source
+end
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
