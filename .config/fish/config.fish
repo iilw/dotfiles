@@ -7,6 +7,9 @@ fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.cargo.
 # fish_add_path ~/flutter/flutter/bin
 
+# Fish Vi mode
+set -g fish_key_bindings fish_vi_key_bindings
+
 # pyenv
 set -Ux PYENV_ROOT $HOME/.pyenv
 test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
