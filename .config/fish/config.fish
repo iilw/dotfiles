@@ -1,10 +1,5 @@
-# Disable fish_greeting
-set fish_greeting "Hello world! Let's code."
+set fish_greeting ""
 
-# Default version for nodejs
-# set --universal nvm_default_version v20
-
-# Path
 fish_add_path /bin
 fish_add_path $HOME/bin
 fish_add_path $HOME/.local/bin
@@ -23,22 +18,15 @@ set -gx EDITOR nvim
 set -gx XDG_RUNTIME_DIR ~/.runtime
 
 set -gx XDG_CONFIG_HOME $HOME/.config
-
-# dotfiles
 alias config '/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# task master
 abbr tm task-master
-
-# Tmux 
 abbr t tmux
 abbr ta 'tmux attach -t'
 abbr tc 'tmux attach'
 abbr tl 'tmux ls'
 abbr ts 'tmux new -s'
 abbr tk 'tmux kill-session -t'
-
-# Files
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
@@ -46,29 +34,14 @@ alias ls 'eza --color=always --icons --group-directories-first'
 alias la 'eza --color=always --icons --group-directories-first --all'
 alias ll 'eza --color=always --icons --group-directories-first --all --long'
 abbr l ll
-
-# Editor
 abbr vim nvim
-abbr vi nvim
-abbr v nvim
-
-# Dev
 alias lazygit "TERM=xterm-256color command lazygit"
 abbr gg lazygit
-
-# Other
 abbr cls clear
-
-
-set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
-if test -f $LOCAL_CONFIG
-    source $LOCAL_CONFIG
-end
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-
 
 # pnpm
 set -gx PNPM_HOME /Users/devling/Library/pnpm
@@ -87,6 +60,12 @@ if type -q zoxide
   zoxide init fish | source
 end
 
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+# fnm
+if type -q fnm
+  fnm env | source
+end
+
+set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+if test -f $LOCAL_CONFIG
+    source $LOCAL_CONFIG
+end
